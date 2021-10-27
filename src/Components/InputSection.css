@@ -1,0 +1,29 @@
+.inputs{
+    margin:50px;
+    display: flex;
+    justify-content: space-between;
+}
+input, button{
+    height: 30px;
+    font-size: 20px;
+    border:none;
+    border-radius: 8px;
+}
+input, button:focus{
+    outline: none;
+}
+input{
+    padding-left:10px
+}
+button{
+    background-color: green;
+    color:white;
+    margin-left: 20px;
+    height: 32px;
+    width: 100px;
+}
+select{
+    height: 35px;
+    font-size: 20px;
+    margin-left: 10px;
+}
