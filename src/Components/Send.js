@@ -8,7 +8,7 @@ function Send({ cartItems }) {
     let messageString = items.map(item => 'Name-' + item.medicine + '  Quantity-' + item.quantity + "%0a")
     const [message, setMessage] = useState(messageString);
     const sendMessage = () => {
-        var url = "https://wa.me/919569622211?text=" + message;
+        var url = "https://wa.me/919569722211?text=" + message;
         window.open(url, '_blank');
     }
     return (
