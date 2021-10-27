@@ -12,7 +12,7 @@ function App() {
   const [items, setItems] = useState([])
   // const [quantity, setQuantity] = useState([])
   const [loading, setLoading] = useState(true)
-  const [noItems, setNoItems] = useState(false)
+  // const [noItems, setNoItems] = useState(false)
   const [cartItems, setCartItems] = useState([])
   // console.log(itemsQuant);
 
@@ -24,12 +24,12 @@ function App() {
     db.collection('medicines').orderBy('medicine', 'asc').onSnapshot(snapshot => {
       setItems(snapshot.docs.map(doc => ({ id: doc.id, medicine: doc.data().medicine, quantity: doc.data().quantity })))
       setLoading(false)
-      setNoItems(false)
+      // setNoItems(false)
     })
     db.collection('medicines').get().then(snap => {
       let size = snap.size // will return the collection size
       if (size === 0) {
-        setNoItems(true)
+        // setNoItems(true)
       }
     });
     // }

@@ -5,7 +5,7 @@ function Send({ cartItems }) {
     // const [message, setMessage] = useState(JSON.stringify(cartItems));
     let items = cartItems.filter(item => item.quantity > 0);
     // console.log(message)
-    let messageString = items.map(item => 'Name-' + item.medicine + "  " + 'Quantity-' + item.quantity + "%0a")
+    let messageString = items.map(item => 'Name-' + item.medicine + '  Quantity-' + item.quantity + "%0a")
     const [message, setMessage] = useState(messageString);
     const sendMessage = () => {
         var url = "https://wa.me/919569622211?text=" + message;
