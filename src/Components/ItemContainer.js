@@ -1,15 +1,13 @@
 import React from 'react'
 import './ItemContainer.css'
 import db from '../firebase'
-// import DeleteIcon from '@mui/icons-material/Delete';
+import { selectSearchTerm } from '../ReduxState/SearchTerm'
+import { useSelector } from 'react-redux'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 function ItemContainer({ items, cartItems }) {
     items = items.map((item) => ({ ...item, itemInCart: cartItems }))
-    // console.log(items)
-    console.log(items)
-    console.log(cartItems)
     //* itemInCart will return all the items in cart then in map function below with the help of i we will get the item which needs to be deleted
-    // console.log(items)
+    let searchTerm = useSelector(selectSearchTerm)
     const handleAdd = (cartItemId) => {
         db.collection('cart').doc(cartItemId).get().then(doc => {
             var prev = doc.data().quantity;
@@ -45,7 +43,16 @@ function ItemContainer({ items, cartItems }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item, i) => (
+                    {items.filter((item) => {
+                        if (!searchTerm.match(/\w/)) {
+                            return item
+                        } else if (item.medicine.toLowerCase().includes(searchTerm.toLowerCase())) {
+                            return item
+                        } else {
+                            return null
+                        }
+                    }
+                    ).map((item, i) => (
                         <tr className="table-bottom">
                             <td>{i + 1}</td>
                             <td style={{ textAlign: 'left', fontWeight: 'bold' }}>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import './InputSection.css'
 import db from '../firebase'
-// import firebase from 'firebase/compat/app'
-function InputSection({ items }) {
+import { setSearchTerm } from '../ReduxState/SearchTerm'
+import { useDispatch } from 'react-redux'
+function InputSection() {
+    let dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [quantity, setQuantity] = useState(1);
     const medInput = (e) => {
@@ -31,7 +33,7 @@ function InputSection({ items }) {
                 {input.match(/\w+/) && quantity !== 0 ? <button type="submit" onClick={medInput}>Add</button> : <button disabled>No Name</button>}
             </form>
             <div>
-                <input type="text" placeholder="Search a medicine" />
+                <input type="text" placeholder="Search a medicine" onChange={e => dispatch(setSearchTerm(e.target.value))} />
                 <select>
                     <option value="Filter" defaultValue disabled>Filter</option>
                     <option>A</option>
