@@ -46,7 +46,7 @@ function App() {
           <ItemContainer items={items} cartItems={cartItems} />
         </Route>
         <Route path="/cart">
-          <Cart cartItems={cartItems} />
+          <Cart cartItems={cartItems} items={items} />
         </Route>
         <Route path="/send">
           <Send cartItems={cartItems} />
