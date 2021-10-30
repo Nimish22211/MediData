@@ -4,6 +4,7 @@ import db from '../firebase'
 import { setSearchTerm } from '../ReduxState/SearchTerm'
 import { useDispatch } from 'react-redux'
 function InputSection() {
+    let filterArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     let dispatch = useDispatch();
     const [input, setInput] = useState('');
     const [quantity, setQuantity] = useState(1);
@@ -34,11 +35,9 @@ function InputSection() {
             </form>
             <div>
                 <input type="text" placeholder="Search a medicine" onChange={e => dispatch(setSearchTerm(e.target.value))} />
-                <select>
+                <select onChange={(e) => dispatch(setSearchTerm(e.target.value))}>
                     <option value="Filter" defaultValue disabled>Filter</option>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
+                    {filterArray.map(letter => <option key={letter} >{letter}</option>)}
                 </select>
             </div>
         </div >
