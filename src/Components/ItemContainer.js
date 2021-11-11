@@ -72,7 +72,7 @@ function ItemContainer({ items, cartItems, user }) {
 
             {items.length === 0 && <h1 style={{ textAlign: 'center' }}>No Items</h1>}
             {user && user.name !== "NIMISH BANDHA" && <h3 style={{ textAlign: 'center', marginTop: "50px" }}>You are not authorized to view this page</h3>}
-            {user && user.name == "NIMISH BANDHA" && items.length === 0 && <h2 style={{ textAlign: 'center' }}>Refresh & try again</h2>}
+            {user && user.name === "NIMISH BANDHA" && items.length === 0 && <h2 style={{ textAlign: 'center' }}>Refresh & try again</h2>}
         </div>
     )
 }
