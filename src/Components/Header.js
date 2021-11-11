@@ -19,7 +19,7 @@ function Header({ cartItems, user }) {
                 history.push('/login');
             }
         })
-    }, [location.pathname])
+    }, [location.pathname, history])
     const handleSignOut = () => {
         let confirm = window.confirm('Are you sure you want to sign out?');
         if (confirm) {
@@ -31,7 +31,7 @@ function Header({ cartItems, user }) {
         <header className="header_flex">
             <Link to="/"> <h1>MediData - <strong>Bandha Medicos</strong></h1></Link>
             <div className="rightBox">
-                {user && <div className="userInfo" onClick={handleSignOut}><div>{user.name}</div> <img src={user.photoURL} width="35px" style={{ marginLeft: '10px' }} /></div>}
+                {user && <div className="userInfo" onClick={handleSignOut}><div>{user.name}</div> <img src={user.photoURL} width="35px" style={{ marginLeft: '10px' }} alt="user img"/></div>}
                 <div className="basket">
                     <Link to="/cart">
                         <ShoppingBasketIcon />
