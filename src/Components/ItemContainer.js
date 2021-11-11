@@ -4,7 +4,7 @@ import db from '../firebase'
 import { selectSearchTerm } from '../ReduxState/SearchTerm'
 import { useSelector } from 'react-redux'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-function ItemContainer({ items, cartItems }) {
+function ItemContainer({ items, cartItems, user }) {
     items = items.map((item) => ({ ...item, itemInCart: cartItems }))
     //* itemInCart will return all the items in cart then in map function below with the help of i we will get the item which needs to be deleted
     let searchTerm = useSelector(selectSearchTerm)
@@ -43,16 +43,13 @@ function ItemContainer({ items, cartItems }) {
                     </tr>
                 </thead>
                 <tbody>
-                    {items.filter((item) => {
+                    {user && user.email === "shailbandha@gmail.com" && items.filter(item => {
                         if (!searchTerm.match(/\w/)) {
                             return item
                         } else if (item.medicine.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return item
-                        } else {
-                            return null
                         }
-                    }
-                    ).map((item, i) => (
+                    }).map((item, i) => (
                         <tr className="table-bottom">
                             <td>{i + 1}</td>
                             <td style={{ textAlign: 'left', fontWeight: 'bold' }}>
@@ -74,7 +71,8 @@ function ItemContainer({ items, cartItems }) {
             </table>
 
             {items.length === 0 && <h1 style={{ textAlign: 'center' }}>No Items</h1>}
-
+            {user && user.name !== "NIMISH BANDHA" && <h3 style={{ textAlign: 'center', marginTop: "50px" }}>You are not authorized to view this page</h3>}
+            {user && user.name == "NIMISH BANDHA" && items.length === 0 && <h2 style={{ textAlign: 'center' }}>Refresh & try again</h2>}
         </div>
     )
 }

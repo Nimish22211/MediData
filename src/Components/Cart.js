@@ -4,7 +4,7 @@ import db from '../firebase'
 import { Link } from 'react-router-dom'
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-function Cart({ cartItems, items }) {
+function Cart({ cartItems, items, user }) {
     items = items.map((item, i) => ({ ...item, itemInCart: cartItems[i] }))
     //* ^add cartItems to each item in items
     let cartItemsArray = cartItems.filter(item => item.quantity > 0);
@@ -49,10 +49,10 @@ function Cart({ cartItems, items }) {
         <div className="cartDiv">
             <div className="cartHeader">
                 <h1 className="cartTitle">Cart</h1>
-                <div>
+                {user && user.email === "shailbandha@gmail.com" && <div>
                     <button onClick={handleReceive} className="received">Order Received?</button>
                     <Link to="/send"><button>Send</button></Link>
-                </div>
+                </div>}
             </div>
             <div className="cartItemsDiv">
                 <div className="cartBox">
@@ -60,7 +60,7 @@ function Cart({ cartItems, items }) {
                     <h4 className="cartItemQuantity">Quantity</h4>
                     <h4 className="cartItemEdit">Edit</h4>
                 </div>
-                {cartItemsArray.map(item => <div className="cartItem">
+                {user && user.email === "shailbandha@gmail.com" && cartItemsArray.map(item => <div className="cartItem">
                     <div>{item.medicine}</div>
                     <div>{item.quantity}</div>
                     <div className="cartEdit">
