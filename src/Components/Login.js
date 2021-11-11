@@ -15,10 +15,10 @@ function Login() {
                 console.log('user logged out')
             }
         })
-    }, [])
+    }, [history])
     return (
         <div style={{ textAlign: 'center', marginTop: '10rem' }}>
-            <img className="workspace" src="images\workspace.png" />
+            <img className="workspace" src="images\workspace.png" alt="loginImage"/>
             <h2 className="login-title">Sign in to get access of your data</h2>
             <button id="signIn" onClick={() => signInWithPopup(auth, provider)}>Sign In With Google</button>
         </div>
