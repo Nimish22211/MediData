@@ -48,6 +48,8 @@ function ItemContainer({ items, cartItems, user }) {
                             return item
                         } else if (item.medicine.toLowerCase().includes(searchTerm.toLowerCase())) {
                             return item
+                        } else{
+                            return null
                         }
                     }).map((item, i) => (
                         <tr className="table-bottom">
